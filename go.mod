@@ -1,4 +1,4 @@
-module github.com/Anton6896/go_11_proj/muvie_server
+module github.com/Anton6896/go_11_proj
 
 go 1.19
 
