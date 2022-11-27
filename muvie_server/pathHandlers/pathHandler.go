@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
 
 	tmpdb "github.com/Anton6896/go_11_proj/muvie_server/tmp_db"
 	"github.com/gorilla/mux"
@@ -50,7 +52,18 @@ func DeleteMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateMovie(w http.ResponseWriter, r *http.Request) {
+	log.Printf("handling /movies [POST]\n")
+	w.Header().Set("Content-Type", "application/json")
+	var movie tmpdb.Movie
+	err := json.NewDecoder(r.Body).Decode(&movie)
+	if err != nil {
+		json.NewEncoder(w).Encode(ResponseMsg{Msg: "please use valid Json data"})	
+		return
+	}
 
+	movie.ID = strconv.Itoa(rand.Intn(100000))
+	tmpdb.Movies = append(tmpdb.Movies, movie)
+	json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("movie created id : %v", movie.ID)})
 }
 
 func UpdateMovie(w http.ResponseWriter, r *http.Request) {

@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	pathhandlers "github.com/Anton6896/go_11_proj/muvie_server/pathHandlers"
-	// "github.com/gorilla/mux"
 	"github.com/gorilla/mux"
 )
 
