@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type ResponceMsg struct {
+type ResponseMsg struct {
 	Msg string `json:"msg"`
 }
 
@@ -33,16 +33,16 @@ func UpdateMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteMovie(w http.ResponseWriter, r *http.Request) {
-	log.Println("handling /movies [delete]")
-	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
+	log.Println(fmt.Sprintf("handling /movies/%v [delete]", params["id"]))
+	w.Header().Set("Content-Type", "application/json")
 
 	for idx, movie := range tmpdb.Movies {
 		if movie.ID == params["id"] {
 			tmpdb.Movies = append(tmpdb.Movies[:idx], tmpdb.Movies[idx+1:]...)
-			json.NewEncoder(w).Encode(ResponceMsg{Msg: fmt.Sprintf("data removed %v", params["id"])})
+			json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("data removed %v", params["id"])})
 			return
 		}
 	}
-	json.NewEncoder(w).Encode(ResponceMsg{Msg: fmt.Sprintf("cant find this id : %v", params["id"])})
+	json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("cant find this id : %v", params["id"])})
 }
