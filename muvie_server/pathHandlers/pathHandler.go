@@ -21,20 +21,22 @@ func GetMovies(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMovie(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	log.Printf("handling /movies/%v [GET]\n", params["id"])
+	w.Header().Set("Content-Type", "application/json")
 
-}
-
-func CreateMovie(w http.ResponseWriter, r *http.Request) {
-
-}
-
-func UpdateMovie(w http.ResponseWriter, r *http.Request) {
-
+	for _, movie := range tmpdb.Movies {
+		if movie.ID == params["id"] {
+			json.NewEncoder(w).Encode(movie)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("cant find this movie : %v", params["id"])})
 }
 
 func DeleteMovie(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Println(fmt.Sprintf("handling /movies/%v [delete]", params["id"]))
+	log.Printf("handling /movies/%v [DELETE]\n", params["id"])
 	w.Header().Set("Content-Type", "application/json")
 
 	for idx, movie := range tmpdb.Movies {
@@ -45,4 +47,12 @@ func DeleteMovie(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("cant find this id : %v", params["id"])})
+}
+
+func CreateMovie(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func UpdateMovie(w http.ResponseWriter, r *http.Request) {
+
 }
