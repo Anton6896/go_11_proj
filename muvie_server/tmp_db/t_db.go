@@ -15,7 +15,7 @@ type Director struct {
 var Movies = []Movie{
 	{
 		ID:    "1",
-		Isbn:  "321321",
+		Isbn:  "00001",
 		Title: "Title 1",
 		Director: &Director{
 			FirstName: "Bill",
@@ -24,7 +24,7 @@ var Movies = []Movie{
 	},
 	{
 		ID:    "2",
-		Isbn:  "312321",
+		Isbn:  "00002",
 		Title: "Title 2",
 		Director: &Director{
 			FirstName: "Martin",
