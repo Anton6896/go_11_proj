@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	pathhandlers "github.com/Anton6896/go_11_proj/muvie_server/pathHandlers"
+	pathHandlers "github.com/Anton6896/go_11_proj/muvie_server/pathHandlers"
 	"github.com/gorilla/mux"
 )
 
@@ -17,11 +17,11 @@ func main() {
 	fmt.Println("new movie server")
 
 	r := mux.NewRouter()
-	r.HandleFunc("/movies", pathhandlers.GetMovies).Methods("GET")
-	r.HandleFunc("/movies/{id}", pathhandlers.GetMovie).Methods("GET")
-	r.HandleFunc("/movies", pathhandlers.CreateMovie).Methods("POST")
-	r.HandleFunc("/movies/{id}", pathhandlers.UpdateMovie).Methods("PUT")
-	r.HandleFunc("/movies/{id}", pathhandlers.DeleteMovie).Methods("DELETE")
+	r.HandleFunc("/movies", pathHandlers.GetMovies).Methods("GET")
+	r.HandleFunc("/movies/{id}", pathHandlers.GetMovie).Methods("GET")
+	r.HandleFunc("/movies", pathHandlers.CreateMovie).Methods("POST")
+	r.HandleFunc("/movies/{id}", pathHandlers.UpdateMovie).Methods("PUT")
+	r.HandleFunc("/movies/{id}", pathHandlers.DeleteMovie).Methods("DELETE")
 
 	log.Printf("starting server at : %v", PORT)
 	log.Fatal(http.ListenAndServe(PORT, r))
