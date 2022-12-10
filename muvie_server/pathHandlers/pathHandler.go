@@ -3,13 +3,14 @@ package pathhandlers
 import (
 	"encoding/json"
 	"fmt"
-	"log"
+
 	"math/rand"
 	"net/http"
 	"strconv"
 
 	tmpDB "github.com/Anton6896/go_11_proj/muvie_server/tmp_db"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 type ResponseMsg struct {
@@ -66,7 +67,7 @@ func CreateMovie(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(ResponseMsg{Msg: fmt.Sprintf("movie created id : %v", movie.ID)})
 }
 
-// super simple update 
+// super simple update
 func UpdateMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)

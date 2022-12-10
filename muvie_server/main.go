@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 
 	pathHandlers "github.com/Anton6896/go_11_proj/muvie_server/pathHandlers"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 const (
@@ -14,7 +13,8 @@ const (
 )
 
 func main() {
-	fmt.Println("new movie server")
+	log.SetFormatter(&log.JSONFormatter{})
+	log.Info("new movie server")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/movies", pathHandlers.GetMovies).Methods("GET")
@@ -23,6 +23,6 @@ func main() {
 	r.HandleFunc("/movies/{id}", pathHandlers.UpdateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", pathHandlers.DeleteMovie).Methods("DELETE")
 
-	log.Printf("starting server at : %v", PORT)
-	log.Fatal(http.ListenAndServe(PORT, r))
+	log.Info("starting server at : %v", PORT)
+	log.Error(http.ListenAndServe(PORT, r))
 }
