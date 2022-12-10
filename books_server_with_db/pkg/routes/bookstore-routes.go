@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Anton6896/go_11_proj/cqlite_use/pkg/controllers"
+	controllers "github.com/Anton6896/go_11_proj/books_server_with_db/pkg/controllers"
 	"github.com/gorilla/mux"
 )
 
