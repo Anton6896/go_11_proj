@@ -53,7 +53,7 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Infof("handle [DeleteBook] : %v\n", params["bookID"])
+	log.Infof("handle [DeleteBook] : %v", params["bookID"])
 	parsedId, parseErr := strconv.ParseInt(params["bookID"], 0, 0)
 	if parseErr != nil {
 		log.Error("get book by id, cant parse book ID")
