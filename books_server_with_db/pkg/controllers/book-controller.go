@@ -1,9 +1,13 @@
 package controllers
 
 import (
-	log "github.com/sirupsen/logrus"
 	"net/http"
+
+	"github.com/Anton6896/go_11_proj/books_server_with_db/pkg/models"
+	log "github.com/sirupsen/logrus"
 )
+
+var book models.Book
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	log.Info("handle [CreateBook]")

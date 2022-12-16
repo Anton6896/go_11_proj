@@ -19,7 +19,31 @@ type Book struct {
 func init() {
 	config.Connect()
 	db = config.GetDb()
-	
+
 	log.Info("first migration")
-	db.AutoMigrate(&Book{}) // create empty book
+	db.AutoMigrate(&Book{}) // smart migration
+}
+
+func CreateBook(b *Book) *Book {
+	db.NewRecord(b)
+	db.Create(&b)
+	return b
+}
+
+func GetAllBooks() []Book {
+	var books []Book
+	db.Find(&books)
+	return books
+}
+
+func GetBookById(id_ int64) (*Book, *gorm.DB) {
+	var b Book
+	db := db.Where("ID=?", id_).Find(&b)
+	return &b, db
+}
+
+func DeleteBook(id_ int64) *Book {
+	var b Book
+	db.Where("ID=?", id_).Delete(b)
+	return &b
 }
