@@ -24,7 +24,13 @@ func init() {
 	db.AutoMigrate(&Book{}) // smart migration
 }
 
-func CreateBook(b *Book) *Book {
+// func CreateBook(b *Book) *Book {
+// 	db.NewRecord(b)
+// 	db.Create(&b)
+// 	return b
+// }
+
+func (b *Book) CreateBook() *Book{ // add function createBook() to this model object
 	db.NewRecord(b)
 	db.Create(&b)
 	return b

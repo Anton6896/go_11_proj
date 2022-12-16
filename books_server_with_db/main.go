@@ -6,7 +6,7 @@ import (
 
 	"github.com/Anton6896/go_11_proj/books_server_with_db/pkg/routes"
 	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
+	// "github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	log "github.com/sirupsen/logrus"
 )

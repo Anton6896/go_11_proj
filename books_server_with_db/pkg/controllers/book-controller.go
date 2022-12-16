@@ -11,20 +11,11 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var book models.Book
-
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	log.Info("handle [CreateBook]")
-	newBook := &models.Book{} // address for new book
-	utils.ParseBody(r, newBook)
-	createdBook := models.CreateBook(newBook)
-
-	// res, err := json.Marshal(createdBook)
-	// if err != nil {
-	// 	log.Error("cant parse json while creating new book")
-	// }
-	// w.WriteHeader(http.StatusOK)
-	// w.Write(res)
+	NewBook := &models.Book{}
+	utils.ParseBody(r, NewBook)
+	createdBook := NewBook.CreateBook()
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(createdBook) // also way to send response

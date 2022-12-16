@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
@@ -10,9 +9,11 @@ import (
 
 func ParseBody(r *http.Request, x interface{}) {
 	log.Info("unpacking json data")
-	if body, err := ioutil.ReadAll(r.Body); err != nil {
-		if err := json.Unmarshal([]byte(body), x); err != nil {
-			return
-		}
+
+	err := json.NewDecoder(r.Body).Decode(&x)
+	if err != nil {
+		log.Error(err)
 	}
+
+	log.Infof("%+v", x)
 }
