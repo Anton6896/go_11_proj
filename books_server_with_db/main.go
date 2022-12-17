@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Anton6896/go_11_proj/books_server_with_db/pkg/routes"
+	"github.com/Anton6896/go_11_proj/books_server_with_db/pkg/utils"
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	log "github.com/sirupsen/logrus"
@@ -15,6 +16,7 @@ const (
 )
 
 func main() {
+	log.SetFormatter(utils.UTCFormatter{Formatter: &log.JSONFormatter{}})
 	log.Info(fmt.Sprintf("starting server at : 0.0.0.0%v", PORT))
 	r := mux.NewRouter()
 	routes.BookStoreRoutes(r)
@@ -25,6 +27,7 @@ func main() {
 
 /*
 	https://www.youtube.com/watch?v=jFfo23yIWac&list=WL&index=3&ab_channel=freeCodeCamp.org 1:40
+
 
 	! db for this exercise
 

@@ -17,3 +17,12 @@ func ParseBody(r *http.Request, x interface{}) {
 
 	log.Infof("%+v", x)
 }
+
+type UTCFormatter struct {
+	log.Formatter
+}
+
+func (u UTCFormatter) Format(e *log.Entry) ([]byte, error) {
+	e.Time = e.Time.UTC()
+	return u.Formatter.Format(e)
+}
