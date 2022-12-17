@@ -14,7 +14,8 @@ var (
 func Connect() {
 	log.Info("connecting to DB [gorm]")
 
-	d, err := gorm.Open("mysql", "anton:132123@/simplerest?charset=utf8&parseTime=True&loc=Local")
+	// d, err := gorm.Open("mysql", "anton:132123@/simplerest?charset=utf8&parseTime=True&loc=Local")
+	d, err := gorm.Open("mysql", "anton:132123@host.docker.internal:3306/simplerest?charset=utf8&parseTime=True&loc=local")
 	
 	if err != nil {
 		panic(err)
