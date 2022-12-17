@@ -28,7 +28,6 @@ func main() {
 /*
 	https://www.youtube.com/watch?v=jFfo23yIWac&list=WL&index=3&ab_channel=freeCodeCamp.org 1:40
 
-
 	! db for this exercise
 
 	docker run --rm --name ant-mysql \
