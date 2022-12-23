@@ -1,0 +1,6 @@
+go 1.19
+
+use (
+	./books_server_with_db
+	./rockets-go
+)
