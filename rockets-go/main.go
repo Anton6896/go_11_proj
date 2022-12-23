@@ -23,7 +23,7 @@ func ContentAwareResize(url string) ([]byte, error) {
 	defer response.Body.Close()
 	converted := &bytes.Buffer{}
 	fmt.Printf("Download complete %s", url)
-	
+
 	shrinkFactor := 30
 	fmt.Printf("Resize in progress %s, shrinking width by %d percent...\n", url, shrinkFactor)
 	p := &caire.Processor{
